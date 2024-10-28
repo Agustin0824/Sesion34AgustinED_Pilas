@@ -19,6 +19,8 @@ public class Sesion34AgustinED_Pila {
         pilaAgustin.push(160);
         
         JOptionPane.showMessageDialog(null, "Datos de pila ordenada es: \n" +pilaAgustin);
+        
+        JOptionPane.showMessageDialog(null, "Autor: Luis Angel Agustin Dolores");
     }
     
 }

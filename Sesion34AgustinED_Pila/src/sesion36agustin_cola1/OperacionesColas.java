@@ -5,48 +5,60 @@ import javax.swing.JOptionPane;
 
 
 public class OperacionesColas {//inicia clase
-    //Atributos y caracterisitcas de las colas principales
+    //Estructura inicial y final de la ED cola
     private int frente;
     private int fin;
     protected Object[] listaCola;
-    //constructor que inicializa los componentes principales de las colas
-    public OperacionesColas(int tamMax) {
-        this.frente = 0;
-        this.fin = -1;
-        listaCola = new Object[tamMax];
-    }//termina constructor
     
-    //metodo para insertar los elementos de la estructura de la cola
-    public void insertar(Object dato) throws Exception{
+    public OperacionesColas(int tamMax) {//constructor que pasa parametros inicio y fin de la cola
+        frente = 0;
+        fin = -1;
+        listaCola = new Object[tamMax];
+                JOptionPane.showMessageDialog(null, "Operaciones colas");
+    }//constructor indica  y autoriza quien va al frente y al fin de la cola
+       
+    public void insertar(Object dato) throws Exception {//inicial el metodo para insertar nuevos elementos
         if (!colaLlena()) {
             fin++;
             listaCola[fin] = dato;
+                        JOptionPane.showMessageDialog(null, "Insertar ");
         } else {
-            JOptionPane.showMessageDialog(null, "\nError 1 al insertar : Cola llena");
-        }//termina metodo para insertar
+            throw new Exception("Error en la cola: Cola LLena");
+        }
+    }// termina para insertar
+    
+        public int tamMax() {//determina el tamaño de los elementos de la ED cola
+            return listaCola.length;
+        }//termina metodo para el numero de elementos
+
+        public boolean colaLlena() {//metodo que indica que la cola esta llena
+            return fin == tamMax() - 1;
+        }//termina metodo que indica que la cola esta llena
         
-    }
-    
-    //metodo para identificar cola llena 
-    public boolean colaLlena(){
-        int tamMax = 0;
-        return fin == tamMax - 1;
-    }//termina metodo para identificar cola llena
-    
-    //tamaño de la ED cola
-    public int tamMax(){
-        return listaCola.length;
-    }//termina tamaño de la ED cola
-    
-    //metodo para imprimir elementos de la cola
-    public void imprimir(){
-        for (int i = 0; i < tamMax(); i++) {
-            Object datoActual = listaCola[i];
-            
-            if (datoActual != null) {
-                JOptionPane.showMessageDialog(null, datoActual+ "    :    ");
+        public boolean colaVacia() {//metodo que indica que la cola esta vacia
+            return frente > fin;
+        }
+        
+        public void imprimir() {//metodo para imprimir
+            for (int i = 0; i < tamMax(); i++) {
+                Object datoActual = listaCola[i];
+
+                if (datoActual != null) {
+                     JOptionPane.showMessageDialog(null, "Cola esta LLena de valores : \n"+(datoActual)+ ", ");
+                }
             }
         }
-    }//termina metodo para imprimir elementos de la cola
-    
+       
+       
+        public int contarDatos() {//inicia metodo contar datos
+        int contador = 0;
+
+        for (int i = 0; i < tamMax(); i++) {
+            if (listaCola[i] != null) {
+                contador++;
+            }
+        }
+
+        return contador;
+        }
 }//termina clase
